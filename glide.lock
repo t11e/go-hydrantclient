@@ -1,0 +1,18 @@
+hash: 871aa2ceffeb8493d6633a899fa356fe787225e2ea6b3720f4b69945afba75c8
+updated: 2016-05-02T15:07:01.681755073-04:00
+imports:
+- name: github.com/pkg/errors
+  version: f85d45fecf0c92c382e731cb03f481957e2ccdd1
+- name: github.com/rs/cors
+  version: 3ca2b550f6a4333b63c845850f760a7d00412cd6
+- name: github.com/rs/xhandler
+  version: d9d9599b6aaf6a058cb7b1f48291ded2cbd13390
+- name: github.com/rs/xmux
+  version: 6ccb3cea9dd7dc8a3d66aac4074de6fc89d42adb
+- name: github.com/t11e/go-pebbleclient
+  version: b954acc3942bdc277fe5b1ef0d392c04706058cf
+- name: golang.org/x/net
+  version: 35ec611a141ee705590b9eb64d673f9e6dfeb1ac
+  subpackages:
+  - context
+devImports: []

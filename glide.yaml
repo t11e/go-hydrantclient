@@ -1,0 +1,14 @@
+package: github.com/t11e/go-hydrantclient
+import:
+- package: github.com/pkg/errors
+  version: ~>0.2.0
+- package: github.com/rs/cors
+  version: master
+- package: github.com/rs/xhandler
+  version: master
+- package: github.com/rs/xmux
+  version: master
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: github.com/t11e/go-pebbleclient
