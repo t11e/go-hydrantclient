@@ -56,16 +56,27 @@ const (
 )
 
 type GroupBy struct {
-	Dimension string      `json:"dimension"`
-	Mode      GroupByMode `json:"mode,omitempty"`
+	Id   string      `json:"id"`
+	Mode GroupByMode `json:"mode,omitempty"`
 }
 
 type FilterOperator string
 
+const (
+	FilterEq          FilterOperator = "eq"
+	FilterNotEq                      = "not_eq"
+	FilterIn                         = "in"
+	FilterNotIn                      = "not_in"
+	FilterIsNull                     = "is_null"
+	FilterIsNotNull                  = "is_not_null"
+	FilterContainsAny                = "contains_any"
+	FilterContainsAll                = "contains_all"
+)
+
 type Filter struct {
-	Dimension string         `json:"dimension"`
-	Operator  FilterOperator `json:"operator"`
-	Value     interface{}    `json:"value"`
+	Id       string         `json:"id"`
+	Operator FilterOperator `json:"operator"`
+	Value    interface{}    `json:"value"`
 }
 
 type Timeframe string
@@ -112,15 +123,15 @@ func (timeRange *TimeRange) MarshalJSON() ([]byte, error) {
 	// TODO: API currently uses epoch, we should change that
 	var epoch struct {
 		Start *float64 `json:"start"`
-		Stop  *float64 `json:"stop"`
+		End   *float64 `json:"end"`
 	}
 	if timeRange.Start != nil {
-		start := timeRange.Start.Unix()
+		start := float64(timeRange.Start.Unix())
 		epoch.Start = &start
 	}
-	if timeRange.Stop != nil {
-		stop := timeRange.Stop.Unix()
-		epoch.Stop = &stop
+	if timeRange.End != nil {
+		stop := float64(timeRange.End.Unix())
+		epoch.End = &stop
 	}
 	return json.Marshal(epoch)
 }

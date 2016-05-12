@@ -14,7 +14,7 @@ type Client struct {
 }
 
 // New constructs a new client.
-func New(client *pebbleClient.Client) (*Client, error) {
+func New(client *pebbleclient.Client) (*Client, error) {
 	return &Client{client}, nil
 }
 
@@ -37,7 +37,7 @@ func (client *Client) Query(query *Query, dataset string) (*ResultSet, error) {
 	}
 
 	result := ResultSet{}
-	err := client.client.Post(fmt.Sprintf("/query/%s/json", dataset), pebbleclient.Body{
+	err = client.client.Post(fmt.Sprintf("/query/%s/json", dataset), pebbleclient.Body{
 		Data:        body,
 		ContentType: "application/json",
 	}, &result)
