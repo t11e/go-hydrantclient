@@ -1,4 +1,4 @@
-package hydrant
+package hydrantclient
 
 func Int(value int) *int {
 	return &value
