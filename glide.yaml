@@ -12,10 +12,13 @@ import:
   subpackages:
   - context
 - package: github.com/t11e/go-pebbleclient
+  version: master
 - package: github.com/op/go-logging
   version: 970db520ece77730c7e4724c61121037378659d9
 - package: github.com/t11e/go-centralclient
+  version: master
 - package: github.com/stretchr/testify
   subpackages:
   - assert
 - package: github.com/t11e/go-groveclient
+  version: master
