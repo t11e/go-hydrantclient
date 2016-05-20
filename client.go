@@ -14,7 +14,10 @@ type Client struct {
 
 // New constructs a new client.
 func New(client pc.Client) (*Client, error) {
-	return &Client{client}, nil
+	return &Client{client.Options(pc.Options{
+		ServiceName: "hydrant",
+		ApiVersion:  1,
+	})}, nil
 }
 
 func (client *Client) Query(query *Query, dataset string) (*ResultSet, error) {
