@@ -22,3 +22,4 @@ import:
   - assert
 - package: github.com/t11e/go-groveclient
   version: master
+- package: github.com/vektra/mockery

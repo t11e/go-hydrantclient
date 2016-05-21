@@ -8,6 +8,8 @@ import (
 	pc "github.com/t11e/go-pebbleclient"
 )
 
+//go:generate go run vendor/github.com/vektra/mockery/cmd/mockery/mockery.go -name=Client -case=underscore
+
 type Client interface {
 	Query(query *Query, dataset string) (*ResultSet, error)
 }

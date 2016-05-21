@@ -1,5 +1,5 @@
-hash: a35f864ea1054163974a5fd0da413a5d62c1f93b9c9dee2c4ca35ec58faa2e52
-updated: 2016-05-20T14:27:06.362237734-04:00
+hash: e84fcdec9cc34160dd94f00500855c0436a3b28e24520b8e67d506cc5ac2143c
+updated: 2016-05-21T14:39:23.266996749-04:00
 imports:
 - name: github.com/ernesto-jimenez/httplogger
   version: 86cc44f6150a7e9dca8586e425a9c73e71f8ae7d
@@ -18,13 +18,15 @@ imports:
   subpackages:
   - assert
 - name: github.com/t11e/go-centralclient
-  version: 97240b01ce4cae397e00142139c66705fbdda7db
+  version: a2a3481db8dd1508c3e28ad2d39cfd7c00a3e35d
 - name: github.com/t11e/go-groveclient
-  version: 1df1d60a7803a375e3c8de146338c18865bd7c9b
+  version: 4a6de7e5ac78181e2d43447f70f4846ba40518aa
 - name: github.com/t11e/go-pebbleclient
-  version: c2ebe0efdd59c1f97be0a88888b55dbba6d71352
+  version: bbeae253010047eafaf48c641dc10d26148b331c
+- name: github.com/vektra/mockery
+  version: 3603a98efa82b3b34d74b22cc3c1a2f961e03b21
 - name: golang.org/x/net
-  version: 8a52c78636f6b7be1b1e5cb58b01a85f1e082659
+  version: 0c607074acd38c5f23d1344dfe74c977464d1257
   subpackages:
   - context
   - context/ctxhttp
