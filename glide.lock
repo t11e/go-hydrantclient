@@ -1,28 +1,39 @@
 hash: e84fcdec9cc34160dd94f00500855c0436a3b28e24520b8e67d506cc5ac2143c
-updated: 2016-05-21T14:39:23.266996749-04:00
+updated: 2016-05-21T19:14:32.477400409-04:00
 imports:
+- name: github.com/davecgh/go-spew
+  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
+  subpackages:
+  - spew
 - name: github.com/ernesto-jimenez/httplogger
   version: 86cc44f6150a7e9dca8586e425a9c73e71f8ae7d
 - name: github.com/op/go-logging
   version: 970db520ece77730c7e4724c61121037378659d9
 - name: github.com/pkg/errors
   version: f85d45fecf0c92c382e731cb03f481957e2ccdd1
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
 - name: github.com/rs/cors
   version: 3ca2b550f6a4333b63c845850f760a7d00412cd6
 - name: github.com/rs/xhandler
   version: d9d9599b6aaf6a058cb7b1f48291ded2cbd13390
 - name: github.com/rs/xmux
   version: 6ccb3cea9dd7dc8a3d66aac4074de6fc89d42adb
+- name: github.com/stretchr/objx
+  version: cbeaeb16a013161a98496fad62933b1d21786672
 - name: github.com/stretchr/testify
   version: 6cb3b85ef5a0efef77caef88363ec4d4b5c0976d
   subpackages:
   - assert
+  - mock
 - name: github.com/t11e/go-centralclient
-  version: a2a3481db8dd1508c3e28ad2d39cfd7c00a3e35d
+  version: ac80db493262537cc99c274dabce8dc3f264cfb6
 - name: github.com/t11e/go-groveclient
   version: 4a6de7e5ac78181e2d43447f70f4846ba40518aa
 - name: github.com/t11e/go-pebbleclient
-  version: bbeae253010047eafaf48c641dc10d26148b331c
+  version: c4ce1081b071a857e559afd2eab76cb84547bf7d
 - name: github.com/vektra/mockery
   version: 3603a98efa82b3b34d74b22cc3c1a2f961e03b21
 - name: golang.org/x/net

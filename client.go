@@ -18,9 +18,16 @@ type client struct {
 	c pc.Client
 }
 
+// Register registers us in a connector.
+func Register(connector *pc.Connector) {
+	connector.Register((*Client)(nil), func(client pc.Client) (pc.Service, error) {
+		return New(client)
+	})
+}
+
 // New constructs a new client.
 func New(pebbleClient pc.Client) (Client, error) {
-	return &client{pebbleClient.Options(pc.Options{
+	return &client{pebbleClient.WithOptions(pc.Options{
 		ServiceName: "hydrant",
 		ApiVersion:  1,
 	})}, nil
