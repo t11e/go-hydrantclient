@@ -150,7 +150,6 @@ func (timeRange *TimeRange) MarshalJSON() ([]byte, error) {
 
 // Query is an aggregation query.
 type Query struct {
-	Schema                  string        `json:"schema"`
 	EventTypes              []EventTypeId `json:"eventTypes,omitempty"`
 	Filters                 []*Filter     `json:"filters,omitempty"`
 	Timeframe               *Timeframe    `json:"timeframe,omitempty"`
