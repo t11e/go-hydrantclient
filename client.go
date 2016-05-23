@@ -40,7 +40,7 @@ func (c *client) Query(query *Query, dataset string) (*ResultSet, error) {
 	}
 
 	result := ResultSet{}
-	err = c.c.Post("/query/:dataset/json", &pc.RequestOptions{
+	err = c.c.Post("/query/:dataset", &pc.RequestOptions{
 		Params: pc.Params{
 			"dataset": dataset,
 		},

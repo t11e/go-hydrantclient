@@ -15,7 +15,7 @@ const (
 type DimensionId string
 
 type Dimension struct {
-	Id                      DimensionId   `json:"id"`
+	ID                      DimensionId   `json:"id"`
 	Description             string        `json:"description"`
 	Group                   string        `json:"group"`
 	Type                    DimensionType `json":type`
@@ -37,27 +37,37 @@ type AggregationInstance struct {
 type EventTypeId string
 
 type EventType struct {
-	Id          EventTypeId `json:"id"`
+	ID          EventTypeId `json:"id"`
 	Dimensions  []Dimension `json:"dimensions"`
 	Description string      `json:"description"`
 }
 
 type Schema struct {
-	Id         string       `json:"id"`
+	ID         DimensionId  `json:"id"`
 	EventTypes []*EventType `json:"eventTypes"`
 }
 
-type GroupByMode string
+type Grouping struct {
+	// ID is the ID of the dimension.
+	ID DimensionId `json:"id"`
+}
+
+// TableGroupingMode defines the mode of tabular grouping.
+type TableGroupingMode string
 
 const (
-	GroupByModeRow   GroupByMode = "row"
-	GroupByModeNest              = "nest"
-	GroupByModePivot             = "pivot"
+	TableGroupingModeRow   TableGroupingMode = "row"
+	TableGroupingModeNest                    = "nest"
+	TableGroupingModePivot                   = "pivot"
 )
 
-type GroupBy struct {
-	Id   string      `json:"id"`
-	Mode GroupByMode `json:"mode,omitempty"`
+// TableGrouping specifies how to group a table.
+type TableGrouping struct {
+	// ID is the ID of the dimension.
+	ID DimensionId `json:"id"`
+
+	// Mode is the mode.
+	Mode TableGroupingMode `json:"mode,omitempty"`
 }
 
 type FilterOperator string
@@ -74,11 +84,12 @@ const (
 )
 
 type Filter struct {
-	Id       string         `json:"id"`
+	ID       DimensionId    `json:"id"`
 	Operator FilterOperator `json:"operator"`
 	Value    interface{}    `json:"value"`
 }
 
+// Timeframe is a named timeframe.
 type Timeframe string
 
 const (
@@ -96,7 +107,6 @@ const (
 	TimeframeLastYear             = "last_year"
 )
 
-// TODO: In current API, this is an int
 type SortDirection string
 
 const (
@@ -104,6 +114,7 @@ const (
 	SortDirectionDescending = "desc"
 )
 
+// TimeInterval is the name of a time interval.
 type TimeInterval string
 
 const (
@@ -114,6 +125,7 @@ const (
 	TimeInterval1h              = "1h"
 )
 
+// TimeRange defines a start/end time range.
 type TimeRange struct {
 	Start *time.Time `json:"start,omitempty"`
 	End   *time.Time `json:"end,omitempty"`
@@ -136,25 +148,51 @@ func (timeRange *TimeRange) MarshalJSON() ([]byte, error) {
 	return json.Marshal(epoch)
 }
 
+// Query is an aggregation query.
 type Query struct {
-	Schema                  string         `json:"schema"`
-	EventTypes              []EventTypeId  `json:"eventTypes,omitempty"`
-	Filters                 []*Filter      `json:"filters,omitempty"`
-	GroupByItems            []*GroupBy     `json:"groupByItems,omitempty"`
-	Timeframe               *Timeframe     `json:"timeframe,omitempty"`
-	TimeRange               *TimeRange     `json:"timeRange,omitempty"`
-	TimeInterval            *TimeInterval  `json:"timeInterval,omitempty"`
-	SortDimension           *DimensionId   `json:"sortDimension,omitempty"`
-	SortDirection           *SortDirection `json:"sortDirection,omitempty"`
-	Limit                   *int64         `json:"limit,omitempty"`
-	TimeZone                *string        `json:"timeZone,omitempty"`
-	AggregationFunctionName *string        `json:"aggregationFunctionName,omitempty"`
+	Schema                  string        `json:"schema"`
+	EventTypes              []EventTypeId `json:"eventTypes,omitempty"`
+	Filters                 []*Filter     `json:"filters,omitempty"`
+	Timeframe               *Timeframe    `json:"timeframe,omitempty"`
+	TimeRange               *TimeRange    `json:"timeRange,omitempty"`
+	TimeInterval            *TimeInterval `json:"timeInterval,omitempty"`
+	Limit                   *int64        `json:"limit,omitempty"`
+	TimeZone                *string       `json:"timeZone,omitempty"`
+	AggregationFunctionName *string       `json:"aggregationFunctionName,omitempty"`
+	Groupings               []*Grouping   `json:"grouping,omitempty"`
 }
 
-type ResultRow struct {
+// ResultBucket is a bucket in a result set.
+type ResultBucket struct {
+	// Key is the grouping value that this bucket represents.
+	Key interface{} `json:"key"`
+
+	// Count is the number of matches.
+	Count int64 `json:"count"`
+
+	// Buckets contain nested aggregation results.
+	Buckets []*ResultBucket `json:"buckets"`
+}
+
+// ResultSet is the results of a query.
+type ResultSet struct {
+	Buckets []ResultBucket `json:"buckets"`
+}
+
+// TableQuery is a tabular query that supports pivoting and nesting.
+type TableQuery struct {
+	Query
+	TableGroupings []*TableGrouping `json:"tableGroupings,omitempty"`
+	SortDimension  *DimensionId     `json:"sortDimension,omitempty"`
+	SortDirection  *SortDirection   `json:"sortDirection,omitempty"`
+}
+
+// TableRow is a table row. Its value can be primitives or rows.
+type TableRow struct {
 	Values map[DimensionId]interface{} `json:"values"`
 }
 
-type ResultSet struct {
-	Rows []ResultRow `json:"rows"`
+// TableResultSet is a tabular result set.
+type TableResultSet struct {
+	Rows []TableRow `json:"rows"`
 }
