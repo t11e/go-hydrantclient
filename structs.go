@@ -158,7 +158,7 @@ type Query struct {
 	Limit                   *int64        `json:"limit,omitempty"`
 	TimeZone                *string       `json:"timeZone,omitempty"`
 	AggregationFunctionName *string       `json:"aggregationFunctionName,omitempty"`
-	Groupings               []*Grouping   `json:"grouping,omitempty"`
+	Groupings               []*Grouping   `json:"groupings,omitempty"`
 }
 
 // ResultBucket is a bucket in a result set.
