@@ -170,7 +170,7 @@ type ResultBucket struct {
 	Count int64 `json:"count"`
 
 	// Buckets contain nested aggregation results.
-	Buckets []*ResultBucket `json:"buckets"`
+	Buckets []*ResultBucket `json:"buckets,omitempty"`
 }
 
 // ResultSet is the results of a query.
