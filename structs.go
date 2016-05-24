@@ -169,13 +169,22 @@ type ResultBucket struct {
 	// Count is the number of matches.
 	Count int64 `json:"count"`
 
+	// Group contain the next nested aggregation group.
+	Group *ResultGroup `json:"group,omitempty"`
+}
+
+// ResultGroup is a grouped result.
+type ResultGroup struct {
+	// ID is the dimension ID.
+	ID DimensionId `json:"id"`
+
 	// Buckets contain nested aggregation results.
 	Buckets []*ResultBucket `json:"buckets,omitempty"`
 }
 
 // ResultSet is the results of a query.
 type ResultSet struct {
-	Buckets []ResultBucket `json:"buckets"`
+	Group ResultGroup `json:"group"`
 }
 
 // TableQuery is a tabular query that supports pivoting and nesting.
