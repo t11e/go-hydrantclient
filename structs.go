@@ -184,7 +184,7 @@ type ResultGroup struct {
 
 // ResultSet is the results of a query.
 type ResultSet struct {
-	Group ResultGroup `json:"group"`
+	Group *ResultGroup `json:"group"`
 }
 
 // TableQuery is a tabular query that supports pivoting and nesting.
